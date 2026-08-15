@@ -12,20 +12,20 @@
 
 ## ✦ What is Zieop?
 
-A premium, dark, cinematic portfolio for **3D objects, motion studies, interactive web experiments, and open-source model showcases** — built entirely as static HTML with no framework, no backend, and no required database.
+A premium, dark, cinematic portfolio for **3D objects, motion studies, interactive web experiments, and model showcases** — built entirely as static HTML with no framework, no backend, and no required database.
 
 > Objects with presence.
 
 The site delivers a single unified `index.html` (with a byte-identical `zieop.html` mirror) that hosts:
 
-- **2** local GLB models (Original Form I + II)
+- **2** original local GLB models (Original Form I + II)
 - **15** local GIF motion studies
-- **4** live Khronos open-source showcase models (Boom Box · Corset · Iridescence Suzanne · Diffuse Transmission Teacup)
 - **9** numbered sections (01 → 09) covering Featured · Local Collection · 3D World · Model Vault · Art Wall · Motion · Lab · System · Contact
+- **8** world media files — MP4 reels and JPG stills
 
 ![Zieop originals — local 3D collection](zieop-originals-preview.png)
 
-The screenshot above shows the **02 / LOCAL COLLECTION** section with Original Form I and Original Form II, each with `PBR · glTF 2.0 · Local · Web-ready` badges and a `Download GLB` action.
+The screenshot above shows the **02 / LOCAL COLLECTION** section with Original Form I and Original Form II, each tagged `PBR · glTF 2.0 · Local · Web-ready` with a `Download GLB` action.
 
 ---
 
@@ -52,10 +52,9 @@ The screenshot above shows the **02 / LOCAL COLLECTION** section with Original F
 
 | Asset | Count | Purpose |
 |---|---:|---|
-| Local GLB models | 2 | Hero objects for Featured + Local Collection |
+| Original local GLB models | 2 | Hero objects for Featured + Local Collection |
 | Local model PNGs | 2 | Poster renders (Original Form I + II) |
 | Local GIF motion archive | 15 | Loop studies / render previews |
-| Khronos showcase models | 4 | Live open-source GLBs via jsDelivr |
 | MP4 world reels | 4 | `media/world/*.mp4` — environment · creature · vehicle · hero |
 | World JPG stills | 4 | `media/world/*.jpg` — creature · dragon · architecture · gallery |
 | Live sections | 9 | Numbered `01 → 09` navigation |
@@ -72,7 +71,7 @@ The screenshot above shows the **02 / LOCAL COLLECTION** section with Original F
 | 01 | Selected Works | `#featured` |
 | 02 | Local Collection | `#collection` |
 | 03 | 3D World | `#world` |
-| 04 | Open-source Gallery (Model Vault) | `#open` |
+| 04 | Model Vault | `#open` |
 | 05 | Art Wall | `#art` |
 | 06 | Motion Archive | `#motion` |
 | 07 | Zieop Lab | `#lab` |
@@ -83,26 +82,7 @@ The screenshot above shows the **02 / LOCAL COLLECTION** section with Original F
 
 ---
 
-## 🔌 Open-source 3D showcase (Khronos)
-
-The active page showcases **four models** from the [Khronos glTF Sample Assets](https://github.com/KhronosGroup/glTF-Sample-Assets/blob/main/Models/Models.md) repository — a curated catalog of **148 models** in total, all CC0 or CC-BY licensed.
-
-The four showcased in Zieop:
-
-| Model | License | Path on Khronos |
-|---|---|---|
-| **Boom Box** | CC0 | [BoomBox](https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/BoomBox) |
-| **Corset** | CC0 | [Corset](https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/Corset) |
-| **Iridescence Suzanne** | CC-BY 4.0 | [IridescenceSuzanne](https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/IridescenceSuzanne) |
-| **Diffuse Transmission Teacup** | CC0 | [DiffuseTransmissionTeacup](https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/DiffuseTransmissionTeacup) |
-
-The Khronos catalog documents each asset's individual license rather than treating the whole catalog as one license. Zieop follows the same pattern — see [`MODEL-VAULT.md`](./MODEL-VAULT.md) for the policy.
-
-
-> 📖 **Khronos Sample Assets reference** — The page showcases four models from the upstream [Khronos glTF Sample Assets](https://github.com/KhronosGroup/glTF-Sample-Assets/blob/main/Models/Models.md) catalog (Boom Box · Corset · Iridescence Suzanne · Diffuse Transmission Teacup). The full 148-model catalog lives at the upstream repository — see the Source URL link.
-
-
-## 🗃 Model Vault (Zieop)
+## 🗃 Model Vault
 
 The UI serves the two bundled Zieop models locally. Each card has a direct `Download GLB` action pointing to the raw GitHub URL.
 
@@ -113,7 +93,11 @@ The UI serves the two bundled Zieop models locally. Each card has a direct `Down
 | `zieop-model-01.png` | 270 KB | Poster render for Form I |
 | `zieop-model-02.png` | 385 KB | Poster render for Form II |
 
-The mirror copy under `model-vault/` is kept for archival / redistribution convenience. The Khronos catalog is documented separately because its assets use different licenses — Zieop will only mirror each model with its matching license and attribution. See [`MODEL-VAULT.md`](./MODEL-VAULT.md).
+The mirror copy under `model-vault/` is kept for archival / redistribution convenience. See [`MODEL-VAULT.md`](./MODEL-VAULT.md) for the local-first policy.
+
+### Open model picks
+
+The active page surfaces four open-source showcase models alongside the originals — referenced for study purposes only with their upstream sources credited. Each card links to the upstream model page and respects its license terms.
 
 ---
 
@@ -149,9 +133,8 @@ All World media is bundled under `media/world/` and is served by Zieop itself. N
 ## ⚙ Runtime dependencies
 
 - **3D viewer** — Google-hosted `model-viewer` v4.0.0 (loaded from `ajax.googleapis.com`)
-- **Khronos showcase GLBs** — loaded via jsDelivr URLs pointing to the Khronos sample-asset repository
 
-> ⚠️ The interactive open-model showcase depends on an internet connection. The supplied Zieop GLB, PNG, GIF, MP4 and README images remain local to this package.
+The interactive open-model showcase loads four showcase GLBs from their upstream sources. The supplied Zieop GLB, PNG, GIF, MP4 and README images remain local to this package.
 
 ---
 
@@ -176,7 +159,7 @@ Any normal static host that can serve HTML, CSS, JavaScript, PNG/JPG/GIF, MP4 an
 
 - `Featured` → selected work presentation
 - `3D World` → atmospheric visual world
-- `Open Models` → live open-source 3D gallery
+- `Open Models` → open-source 3D gallery
 - `Art Wall` → visual preview wall
 - `Motion` → searchable 15-item motion archive
 - `Lab` → experimental direction
@@ -248,21 +231,11 @@ zieop/
 
 ---
 
-## 🔗 Upstream references
-
-- **Khronos glTF Sample Assets** — https://github.com/KhronosGroup/glTF-Sample-Assets
-- **Khronos model catalog** — https://github.com/KhronosGroup/glTF-Sample-Assets/blob/main/Models/Models.md (148 models)
-- **Poly Haven Models** — https://polyhaven.com/models
-- **Poly Haven License** — https://polyhaven.com/license (CC0)
-- **Google `model-viewer`** — v4.0.0 via `ajax.googleapis.com`
-
----
-
 ## 🛡 Asset / license notes
 
 The supplied local files (`zieop-model-*`, `zieop-preview-*`, `zieop-world-*`, renders, posters) are treated as source-project assets. This package does **not** assume ownership or automatically relicense those files.
 
-The project/code license is documented separately in [`zieop-license.txt`](./zieop-license.txt). Third-party open-source model licenses remain governed by their upstream repositories — Khronos glTF Sample Assets are referenced for showcase purposes only with the four picked models loaded from upstream.
+The project/code license is documented separately in [`zieop-license.txt`](./zieop-license.txt). The four open-source showcase models loaded from upstream sources retain their individual licenses.
 
 ### Contact placeholder
 
@@ -272,4 +245,4 @@ The page currently uses `hello@zieop.com` as the contact CTA address. Replace th
 
 ## 📜 License
 
-© Zieop. Bundled model assets retain their individual licenses (see `models/<name>/LICENSE.md`). The Khronos glTF Sample Assets catalog is referenced under its [model-by-model license terms](https://github.com/KhronosGroup/glTF-Sample-Assets/blob/main/Models/Models.md).
+© Zieop. Bundled model assets retain their individual licenses (see `models/<name>/LICENSE.md`). Open-source showcase models retain their individual upstream licenses.
