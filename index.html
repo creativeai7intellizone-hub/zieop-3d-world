@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07090d">
+<meta name="description" content="Zieop — a world-class creative-tech portfolio for 3D, motion, interactive web experiments, and open-source model studies.">
+<meta property="og:title" content="Zieop — World-Class Pro">
+<meta property="og:description" content="A cinematic creative-tech portfolio for 3D, motion, experiments, and interactive web work.">
+<meta property="og:image" content="zieop-readme-banner.jpg">
+<title>Zieop — World-Class Pro</title>
+
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+
+<style>
+:root{
+  --bg:#07090d;
+  --panel:#0d1118;
+  --panel2:#111722;
+  --line:rgba(255,255,255,.10);
+  --line2:rgba(255,255,255,.06);
+  --text:#f5f7fb;
+  --muted:#98a2b3;
+  --soft:#cbd3df;
+  --accent:#7c5cff;
+  --accent2:#12d7ff;
+  --good:#57e389;
+  --radius:24px;
+  --shadow:0 28px 90px rgba(0,0,0,.38);
+  --max:1440px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:
+    radial-gradient(circle at 14% 6%,rgba(124,92,255,.18),transparent 26rem),
+    radial-gradient(circle at 86% 12%,rgba(18,215,255,.12),transparent 28rem),
+    var(--bg);
+  color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  line-height:1.55;overflow-x:hidden
+}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.35;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,#000,transparent 75%);z-index:-1}
+a{color:inherit}
+button,input{font:inherit}
+button{cursor:pointer}
+::selection{background:rgba(124,92,255,.35)}
+
+
+.skip{position:fixed;left:16px;top:12px;z-index:500;transform:translateY(-160%);padding:10px 13px;border-radius:10px;background:#fff;color:#07090d;text-decoration:none;font-size:12px;font-weight:800;transition:transform .2s}
+.skip:focus{transform:none}
+.viewer-status{position:absolute;left:16px;bottom:16px;right:16px;display:flex;justify-content:space-between;gap:10px;align-items:center;pointer-events:none}
+.status-badge{padding:7px 9px;border-radius:9px;border:1px solid var(--line);background:rgba(0,0,0,.3);font-size:10px;color:#bcc5d2;backdrop-filter:blur(8px)}
+.open-fallback{display:none;position:absolute;inset:0;align-items:center;justify-content:center;flex-direction:column;gap:8px;padding:24px;text-align:center;background:linear-gradient(160deg,#0a0e14,#090c12);color:#aeb7c5}
+.open-fallback strong{color:#fff}
+.model-shell{position:relative;height:100%}
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px clamp(18px,4vw,56px);transition:.25s;
+  background:linear-gradient(to bottom,rgba(7,9,13,.88),rgba(7,9,13,.46),transparent);
+  backdrop-filter:blur(14px)
+}
+.nav.solid{background:rgba(7,9,13,.82);border-bottom:1px solid var(--line)}
+.logo{font-weight:800;letter-spacing:.16em;text-decoration:none;font-size:17px}
+.logo span{color:var(--accent)}
+.navlinks{display:flex;gap:28px;align-items:center}
+.navlinks a{text-decoration:none;color:var(--muted);font-size:13px}
+.navlinks a:hover{color:#fff}
+.navcta{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:999px;padding:9px 13px;text-decoration:none;font-size:12px}
+@media(max-width:800px){.navlinks{display:none}}
+
+main{width:min(100%,var(--max));margin:0 auto}
+.hero{min-height:100vh;padding:150px clamp(22px,6vw,82px) 80px;display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center}
+.hero-copy{max-width:760px}
+.kicker{display:inline-flex;align-items:center;gap:8px;color:#b9c0cd;border:1px solid var(--line);background:rgba(255,255,255,.035);border-radius:999px;padding:8px 12px;font-size:11px;text-transform:uppercase;letter-spacing:.16em}
+.dot{width:7px;height:7px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 0 16px rgba(18,215,255,.45)}
+h1{font-size:clamp(52px,8vw,108px);line-height:.94;letter-spacing:-.055em;margin:24px 0}
+h1 .gradient{background:linear-gradient(110deg,#fff 18%,#a7a0ff 46%,#66e9ff 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:clamp(16px,2vw,20px);color:var(--muted);max-width:700px}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{border:1px solid var(--line);background:rgba(255,255,255,.04);color:#fff;border-radius:14px;padding:13px 17px;text-decoration:none;font-weight:650;font-size:13px}
+.btn.primary{border-color:transparent;background:linear-gradient(135deg,var(--accent),#5c8dff);box-shadow:0 18px 44px rgba(124,92,255,.22)}
+.btn:hover{transform:translateY(-2px)}
+.hero-stage{position:relative;min-height:560px;border:1px solid var(--line);border-radius:32px;background:radial-gradient(circle at 50% 35%,rgba(124,92,255,.18),transparent 42%),linear-gradient(160deg,#0f1520,#080b11);overflow:hidden;box-shadow:var(--shadow)}
+.stage-orb{position:absolute;width:430px;height:430px;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%);background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.26),transparent 18%),radial-gradient(circle at 58% 63%,rgba(124,92,255,.55),transparent 47%),radial-gradient(circle at 70% 25%,rgba(18,215,255,.4),transparent 44%),#101826;filter:blur(.2px);box-shadow:inset 0 0 90px rgba(255,255,255,.06),0 0 80px rgba(124,92,255,.15)}
+.stage-ring{position:absolute;inset:18%;border:1px solid rgba(255,255,255,.09);border-radius:50%;transform:rotateX(64deg);animation:float 8s ease-in-out infinite}
+.stage-ring.r2{inset:25%;transform:rotateY(66deg) rotateX(10deg);animation-duration:11s}
+.stage-grid{position:absolute;left:0;right:0;bottom:-28%;height:70%;background:linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);background-size:38px 38px;transform:perspective(520px) rotateX(67deg);mask-image:linear-gradient(to top,#000,transparent)}
+.stage-badge{position:absolute;left:18px;top:18px;padding:9px 12px;border-radius:10px;background:rgba(0,0,0,.35);border:1px solid var(--line);font-size:11px;color:#d7dce4}
+.stage-foot{position:absolute;left:20px;right:20px;bottom:20px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.pill{padding:8px 11px;border:1px solid var(--line);background:rgba(0,0,0,.26);border-radius:999px;font-size:11px;color:#b7c0ce}
+@keyframes float{50%{transform:rotateX(64deg) translateY(-15px)}}
+
+.section{padding:90px clamp(22px,6vw,82px)}
+.section-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:28px}
+.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#8792a4;margin-bottom:8px}
+h2{font-size:clamp(30px,4vw,54px);line-height:1;letter-spacing:-.04em;margin:0}
+.section-head p{max-width:620px;color:var(--muted);font-size:14px}
+@media(max-width:850px){.hero{grid-template-columns:1fr}.hero-stage{min-height:420px}.section-head{display:block}.section-head p{margin-top:14px}}
+
+.local-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+@media(max-width:760px){.local-grid{grid-template-columns:1fr}}
+.card{border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018));overflow:hidden;box-shadow:0 15px 50px rgba(0,0,0,.18)}
+.viewer{height:430px;background:radial-gradient(circle at 50% 35%,rgba(124,92,255,.16),transparent 38%),#080b10;position:relative}
+.viewer img{width:100%;height:100%;object-fit:cover;display:block;opacity:.96}
+.viewer-tag{position:absolute;left:16px;top:16px;border:1px solid var(--line);background:rgba(0,0,0,.3);backdrop-filter:blur(8px);padding:8px 10px;border-radius:10px;font-size:10px;letter-spacing:.15em;text-transform:uppercase}
+.viewer-actions{position:absolute;right:16px;top:16px;display:flex;gap:8px}
+.iconbtn{width:38px;height:38px;border-radius:11px;border:1px solid var(--line);background:rgba(0,0,0,.32);color:#fff}
+.meta{padding:22px}
+.meta-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.meta h3{margin:0;font-size:22px}
+.meta p{color:var(--muted);font-size:13px;margin:9px 0 16px}
+.tags{display:flex;gap:7px;flex-wrap:wrap}
+.tag{font-size:10px;color:#c6ced9;border:1px solid var(--line);padding:6px 8px;border-radius:999px}
+.meta-foot{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:18px;padding-top:15px;border-top:1px solid var(--line2)}
+.meta-foot small{color:#8994a4}
+.linkbtn{padding:10px 12px;border-radius:10px;border:1px solid rgba(124,92,255,.5);background:rgba(124,92,255,.09);text-decoration:none;font-size:11px;font-weight:700}
+
+.open-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+@media(max-width:1050px){.open-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.open-grid{grid-template-columns:1fr}}
+.open-card{min-width:0}
+.open-viewer{height:290px;background:#090d13;border-bottom:1px solid var(--line)}
+model-viewer{width:100%;height:100%;background:radial-gradient(circle at 50% 35%,rgba(124,92,255,.18),transparent 42%),#090d13;--poster-color:transparent}
+.open-info{padding:16px}
+.open-info h3{font-size:17px;margin:0 0 6px}
+.open-info p{font-size:12px;color:var(--muted);margin:0 0 12px}
+.open-line{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.license{font-size:10px;color:var(--good);text-transform:uppercase;letter-spacing:.12em}
+
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.search{flex:1;min-width:220px;padding:13px 15px;background:#0a0e14;border:1px solid var(--line);color:#fff;border-radius:12px;outline:none}
+.filter{padding:11px 13px;border:1px solid var(--line);background:#0a0e14;color:#dbe2ec;border-radius:12px}
+.preview-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+@media(max-width:1100px){.preview-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:800px){.preview-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.preview-grid{grid-template-columns:repeat(2,1fr)}}
+.preview{aspect-ratio:1;overflow:hidden;border-radius:16px;border:1px solid var(--line);position:relative;background:#080b10}
+.preview img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.preview:hover img{transform:scale(1.06)}
+.preview span{position:absolute;left:9px;bottom:9px;padding:6px 8px;background:rgba(0,0,0,.45);border:1px solid var(--line);border-radius:8px;font-size:9px;color:#dbe2ec;backdrop-filter:blur(8px)}
+
+.features{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:850px){.features{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.features{grid-template-columns:1fr}}
+.feature{padding:22px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.025)}
+.feature b{display:block;font-size:14px;margin-bottom:7px}
+.feature span{color:var(--muted);font-size:12px}
+
+.statsband{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:28px 0 0}
+@media(max-width:700px){.statsband{grid-template-columns:repeat(2,1fr)}}
+.statbox{padding:18px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.025)}
+.statbox strong{display:block;font-size:28px;letter-spacing:-.03em}
+.statbox span{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.15em}
+
+footer{padding:56px clamp(22px,6vw,82px);border-top:1px solid var(--line);margin-top:40px}
+.footer-inner{max-width:var(--max);margin:auto;display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.footer-brand{font-weight:800;letter-spacing:.18em}
+.footer-brand span{color:var(--accent)}
+footer p{color:var(--muted);font-size:12px;max-width:500px}
+.footer-links{display:flex;gap:18px;flex-wrap:wrap}
+.footer-links a{font-size:11px;color:#aab3c0;text-decoration:none}
+.footer-links a:hover{color:#fff}
+
+.modal-back{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.78);backdrop-filter:blur(12px);z-index:200;padding:20px}
+.modal-back.open{display:flex}
+.modal{width:min(1100px,100%);max-height:92vh;overflow:auto;background:#0a0e14;border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow)}
+.modal-head{display:flex;justify-content:space-between;gap:14px;align-items:center;padding:18px 20px;border-bottom:1px solid var(--line)}
+.modal-title{font-weight:750}
+.modal-close{width:38px;height:38px;border-radius:11px;border:1px solid var(--line);background:#111722;color:#fff}
+.modal-stage{height:min(66vh,650px);background:#06090e}
+.modal-stage model-viewer{height:100%}
+.modal-body{padding:20px}
+.modal-body p{color:var(--muted);font-size:13px}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);opacity:0;pointer-events:none;background:#121823;border:1px solid var(--line);padding:11px 14px;border-radius:12px;font-size:12px;transition:.28s;z-index:300}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.reveal{opacity:0;transform:translateY(18px);transition:.7s ease}
+.reveal.on{opacity:1;transform:none}
+
+.feature-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:16px}
+@media(max-width:900px){.feature-grid{grid-template-columns:1fr}}
+.feature-hero{min-height:610px;display:grid;grid-template-rows:1fr auto}
+.feature-media{position:relative;min-height:430px;overflow:hidden}
+.feature-media model-viewer{width:100%;height:100%;background:radial-gradient(circle at 50% 35%,rgba(124,92,255,.2),transparent 42%),#090d13}
+.floating-label{position:absolute;left:18px;top:18px;border:1px solid var(--line);background:rgba(0,0,0,.34);backdrop-filter:blur(8px);padding:8px 10px;border-radius:10px;font-size:10px;letter-spacing:.14em}
+.feature-copy{padding:22px}.feature-copy h3{font-size:34px;margin:0 0 10px;letter-spacing:-.04em}.feature-copy p{max-width:600px;color:var(--muted);font-size:13px;margin:0 0 18px}
+.feature-stack{display:grid;grid-template-rows:1fr 1fr;gap:16px}.mini-feature{display:grid;grid-template-columns:1.1fr .9fr;min-height:0;overflow:hidden}.mini-feature img{width:100%;height:100%;min-height:250px;object-fit:cover}.mini-feature>div{padding:20px;align-self:end}.mini-feature h3{margin:0 0 8px;font-size:24px}.mini-feature p{margin:0;color:var(--muted);font-size:12px}
+.world-scene{min-height:610px;position:relative;overflow:hidden;background:radial-gradient(circle at 50% 44%,rgba(18,215,255,.12),transparent 24%),radial-gradient(circle at 52% 48%,rgba(124,92,255,.20),transparent 42%),linear-gradient(160deg,#0d1320,#070a10)}
+.scene-ring.big{width:440px;height:440px}.scene-ring.small{width:300px;height:300px;transform:translate(-50%,-50%) rotateY(68deg) rotateX(18deg)}
+.scene-caption span,.scene-caption em{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8d98aa;font-style:normal}.scene-caption strong{font-size:28px;letter-spacing:-.03em}
+.world-stat strong{display:block;font-size:32px}.world-stat span{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}.world-note h3{font-size:25px;margin:0 0 9px}.world-note p{color:var(--muted);font-size:13px;margin:0}
+
+.world-hero-video{position:relative;overflow:hidden;min-height:520px;background:#05070b}.world-hero-video video{display:block;width:100%;height:520px;object-fit:cover;background:#05070b}.world-video-overlay{position:absolute;left:24px;right:24px;bottom:24px;display:grid;gap:7px;max-width:700px}.world-video-overlay strong{font-size:clamp(28px,4vw,52px);letter-spacing:-.045em}.world-video-overlay small{color:#a5adbd;font-size:12px}.world-media-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}.world-media{position:relative;overflow:hidden;min-height:360px;background:#070a10}.world-media video{width:100%;height:360px;object-fit:cover;display:block}.world-media-copy{position:absolute;left:16px;right:16px;bottom:16px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:rgba(4,6,10,.58);backdrop-filter:blur(10px)}.world-media-copy span{display:block;color:#8e98aa;font-size:9px;letter-spacing:.15em}.world-media-copy strong{display:block;margin-top:4px;font-size:17px}.world-gallery{margin-top:16px;padding:22px}.world-gallery-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:16px}.world-gallery-head h3{font-size:28px;margin:0}.world-gallery-head p{max-width:420px;color:var(--muted);font-size:12px;margin:0}.world-image-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;grid-auto-rows:190px;gap:10px}.world-image-grid figure{position:relative;margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#090d13}.world-image-grid figure:first-child{grid-row:span 2}.world-image-grid figure:last-child{grid-column:span 2}.world-image-grid img{width:100%;height:100%;display:block;object-fit:cover}.world-image-grid figcaption{position:absolute;left:10px;bottom:10px;padding:7px 9px;border-radius:9px;background:rgba(0,0,0,.48);border:1px solid var(--line);font-size:10px}@media(max-width:900px){.world-media-grid{grid-template-columns:1fr 1fr}.world-gallery-head{display:block}.world-gallery-head p{margin-top:8px}.world-image-grid{grid-template-columns:1fr 1fr}.world-image-grid figure:first-child{grid-row:auto}.world-image-grid figure:last-child{grid-column:span 2}}@media(max-width:560px){.world-hero-video video{height:430px}.world-media-grid{grid-template-columns:1fr}.world-media video{height:320px}.world-image-grid{grid-template-columns:1fr;grid-auto-rows:210px}.world-image-grid figure:first-child,.world-image-grid figure:last-child{grid-column:auto;grid-row:auto}}
+.art-wall{display:grid;grid-template-columns:1.1fr .8fr .9fr;grid-auto-rows:210px;gap:12px}.art-card{position:relative;border:1px solid var(--line);border-radius:18px;padding:0;overflow:hidden;background:#090d13;min-width:0}.art-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}.art-card:hover img{transform:scale(1.05)}.art-card span{position:absolute;left:11px;bottom:11px;padding:7px 9px;border-radius:9px;background:rgba(0,0,0,.43);border:1px solid var(--line);font-size:10px;letter-spacing:.12em}.art-tall{grid-row:span 2}.art-wide{grid-column:span 2}
+.lab-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.lab-card{position:relative;min-height:260px;padding:22px;border-radius:18px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.018));overflow:hidden}.lab-card:after{content:"";position:absolute;width:160px;height:160px;border-radius:50%;right:-65px;top:-65px;background:radial-gradient(circle,rgba(124,92,255,.18),transparent 64%)}.lab-no{font-size:10px;color:#7e899b;letter-spacing:.18em}.lab-card h3{font-size:22px;margin:64px 0 10px}.lab-card p{font-size:12px;color:var(--muted);max-width:260px}.lab-card .tag{position:absolute;bottom:20px;left:22px}
+.contact-card{padding:34px;display:flex;justify-content:space-between;align-items:end;gap:30px;background:radial-gradient(circle at 15% 0%,rgba(124,92,255,.16),transparent 28%),linear-gradient(135deg,rgba(255,255,255,.04),rgba(255,255,255,.018))}.contact-card h2{max-width:720px}.contact-card p{color:var(--muted);max-width:640px;font-size:13px}
+@media(max-width:900px){.lab-grid{grid-template-columns:repeat(2,1fr)}.art-wall{grid-template-columns:1fr 1fr;grid-auto-rows:190px}.art-wide{grid-column:span 2}.contact-card{display:block}.contact-card .actions{margin-top:20px}}
+@media(max-width:560px){.mini-feature{grid-template-columns:1fr}.lab-grid{grid-template-columns:1fr}.art-wall{grid-template-columns:1fr;grid-auto-rows:210px}.art-tall,.art-wide{grid-column:auto;grid-row:auto}.feature-hero{min-height:auto}.feature-media{min-height:340px}.world-scene{min-height:500px}}
+.hero-object{position:absolute;border:1px solid rgba(255,255,255,.14);background:linear-gradient(135deg,rgba(255,255,255,.18),rgba(255,255,255,.02));backdrop-filter:blur(2px);box-shadow:0 18px 70px rgba(0,0,0,.35)}.hero-object-a{width:110px;height:110px;right:17%;top:21%;transform:rotate(32deg);border-radius:28px}.hero-object-b{width:74px;height:74px;left:18%;top:36%;transform:rotate(18deg) skew(-5deg);border-radius:18px}.hero-object-c{width:58px;height:58px;right:26%;bottom:22%;transform:rotate(45deg);border-radius:14px}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+</head>
+
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<nav class="nav" id="nav" aria-label="Primary navigation">
+  <a class="logo" href="#top">ZIE<span>OP</span></a>
+  <div class="navlinks">
+    <a href="#featured">Featured</a>
+    <a href="#world">3D World</a>
+    <a href="#open">Model Vault</a>
+    <a href="#art">Art Wall</a>
+    <a href="#motion">Motion</a>
+    <a href="#lab">Lab</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a class="navcta" href="#open">Explore 3D ↗</a>
+</nav>
+
+<main id="content" tabindex="-1">
+<section class="hero" id="top">
+  <div class="hero-copy reveal">
+    <div class="kicker"><span class="dot"></span> Zieop / World-Class Pro</div>
+    <h1>Objects with <span class="gradient">presence.</span></h1>
+    <p>A curated creative-tech space for 3D objects, motion, experiments, and interactive web work — built around a darker, cleaner, more cinematic Zieop identity.</p>
+    <div class="actions">
+      <a class="btn primary" href="#featured">Explore featured work</a>
+      <a class="btn" href="#world">Enter 3D world</a>
+    </div>
+    <div class="statsband">
+      <div class="statbox"><strong>02</strong><span>Original 3D assets</span></div>
+      <div class="statbox"><strong>04</strong><span>Open model picks</span></div>
+      <div class="statbox"><strong>15</strong><span>Motion studies</span></div>
+      <div class="statbox"><strong>09</strong><span>Core sections</span></div>
+    </div>
+  </div>
+  <div class="hero-stage reveal">
+    <div class="stage-badge">ZIEOP / DIGITAL OBJECTS</div>
+    <div class="stage-ring"></div><div class="stage-ring r2"></div>
+    <div class="stage-grid"></div>
+    <div class="hero-object hero-object-a"></div>
+    <div class="hero-object hero-object-b"></div>
+    <div class="hero-object hero-object-c"></div>
+    <div class="stage-orb"></div>
+    <div class="stage-foot"><span class="pill">Objects · Motion · Web</span><span class="pill">A curated Zieop space</span></div>
+  </div>
+</section>
+
+<section class="section" id="featured">
+  <div class="section-head">
+    <div><div class="eyebrow">01 / Selected works</div><h2>Built to be seen.</h2></div>
+    <p>A tighter editorial layer for the strongest visual pieces: one hero object, one motion study, and one experimental render direction.</p>
+  </div>
+  <div class="feature-grid">
+    <article class="feature-hero card reveal">
+      <div class="feature-media feature-media-model">
+        <model-viewer src="zieop-model-01.glb" poster="zieop-model-01.png" camera-controls auto-rotate shadow-intensity="1" exposure="1" loading="lazy" interaction-prompt="none" alt="Zieop featured 3D object"></model-viewer>
+        <span class="floating-label">FEATURED / 01</span>
+      </div>
+      <div class="feature-copy"><div class="eyebrow">Original 3D</div><h3>Original Form I</h3><p>A hero presentation built around form, light, and material rather than a crowded gallery.</p><a class="linkbtn" href="#collection">View collection ↗</a></div>
+    </article>
+    <div class="feature-stack">
+      <article class="mini-feature card reveal"><img src="zieop-preview-04.gif" alt="Zieop motion study 04" loading="lazy"><div><div class="eyebrow">Motion / 04</div><h3>Loop with presence.</h3><p>Animated study from the original archive.</p></div></article>
+      <article class="mini-feature card reveal"><img src="zieop-model-02.png" alt="Zieop original model two render" loading="lazy"><div><div class="eyebrow">Render / 02</div><h3>Material study.</h3><p>A cleaner still-image treatment for project previews.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="collection">
+  <div class="section-head">
+    <div><div class="eyebrow">02 / Local collection</div><h2>Zieop originals.</h2></div>
+    <p>Your existing GLB assets are preserved, renamed, and surfaced inside the new interface. Each card has a direct download and a fullscreen-ready visual entry point.</p>
+  </div>
+  <div class="local-grid">
+    <article class="card reveal">
+      <div class="viewer">
+        <model-viewer id="local-model-01" src="zieop-model-01.glb" poster="zieop-model-01.png" camera-controls auto-rotate shadow-intensity="1" exposure="1" loading="lazy" interaction-prompt="none" alt="Zieop original model one"></model-viewer>
+        <div class="viewer-tag">Local / Original 01</div>
+        <div class="viewer-actions"><button class="iconbtn" aria-label="Open Original Form I in fullscreen" onclick="focusViewer('local-model-01')">⤢</button></div>
+      </div>
+      <div class="meta">
+        <div class="meta-top"><h3>Original Form I</h3><span class="tag">GLB</span></div>
+        <p>High-detail PBR hero asset from the original Zieop collection.</p>
+        <div class="tags"><span class="tag">PBR</span><span class="tag">glTF 2.0</span><span class="tag">Local</span><span class="tag">Web-ready</span></div>
+        <div class="meta-foot"><small>Asset preserved from source ZIP</small><a class="linkbtn" href="zieop-model-01.glb" download>Download GLB</a></div>
+      </div>
+    </article>
+    <article class="card reveal">
+      <div class="viewer">
+        <model-viewer id="local-model-02" src="zieop-model-02.glb" poster="zieop-model-02.png" camera-controls auto-rotate shadow-intensity="1" exposure="1" loading="lazy" interaction-prompt="none" alt="Zieop original model two"></model-viewer>
+        <div class="viewer-tag">Local / Original 02</div>
+        <div class="viewer-actions"><button class="iconbtn" aria-label="Open Original Form II in fullscreen" onclick="focusViewer('local-model-02')">⤢</button></div>
+      </div>
+      <div class="meta">
+        <div class="meta-top"><h3>Original Form II</h3><span class="tag">GLB</span></div>
+        <p>Companion high-detail asset, presented with a cleaner and faster discovery flow.</p>
+        <div class="tags"><span class="tag">PBR</span><span class="tag">glTF 2.0</span><span class="tag">Local</span><span class="tag">Web-ready</span></div>
+        <div class="meta-foot"><small>Asset preserved from source ZIP</small><a class="linkbtn" href="zieop-model-02.glb" download>Download GLB</a></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="world">
+  <div class="section-head">
+    <div><div class="eyebrow">03 / 3D world</div><h2>A real visual world.</h2></div>
+    <p>The old abstract orbit graphic is replaced with a curated world reel: realistic 3D objects, environments, characters, vehicles, architecture, and motion studies from Zieop’s visual archive.</p>
+  </div>
+  <div class="world-hero-video card reveal">
+    <video autoplay muted loop playsinline preload="metadata" poster="media/world/zieop-world-03.jpg" aria-label="Zieop 3D world reel">
+      <source src="media/world/zieop-world-03.mp4" type="video/mp4">
+    </video>
+    <div class="world-video-overlay"><span class="pill">ZIEOP WORLD / REALISTIC 3D</span><strong>Objects, places, creatures & machines.</strong><small>Motion archive · curated visual studies</small></div>
+  </div>
+  <div class="world-media-grid">
+    <article class="world-media card reveal"><video muted loop playsinline preload="metadata" poster="media/world/zieop-world-06.jpg"><source src="media/world/zieop-world-06.mp4" type="video/mp4"></video><div class="world-media-copy"><span>ENVIRONMENT</span><strong>Floating island</strong></div></article>
+    <article class="world-media card reveal"><video muted loop playsinline preload="metadata" poster="media/world/zieop-world-07.jpg"><source src="media/world/zieop-world-07.mp4" type="video/mp4"></video><div class="world-media-copy"><span>CREATURE</span><strong>Realistic character study</strong></div></article>
+    <article class="world-media card reveal"><video muted loop playsinline preload="metadata" poster="media/world/zieop-world-08.jpg"><source src="media/world/zieop-world-08.mp4" type="video/mp4"></video><div class="world-media-copy"><span>VEHICLE</span><strong>Product-style vehicle</strong></div></article>
+  </div>
+  <div class="world-gallery card reveal">
+    <div class="world-gallery-head"><div><div class="eyebrow">World archive</div><h3>More visual worlds.</h3></div><p>Realistic-looking object studies arranged as a clean editorial gallery.</p></div>
+    <div class="world-image-grid">
+      <figure><img src="media/world/zieop-world-10.jpg" alt="Zieop detailed creature and mechanical study" loading="lazy"><figcaption>Mechanical creature</figcaption></figure>
+      <figure><img src="media/world/zieop-world-14.jpg" alt="Zieop dragon sculpture study" loading="lazy"><figcaption>Dragon sculpture</figcaption></figure>
+      <figure><img src="media/world/zieop-world-15.jpg" alt="Zieop architectural model" loading="lazy"><figcaption>Architecture</figcaption></figure>
+      <figure><img src="media/world/zieop-world-gallery.jpg" alt="Zieop 3D world visual collage" loading="lazy"><figcaption>World collection</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="open">
+  <div class="section-head"><div><div class="eyebrow">04 / Model Vault</div><h2>Every downloadable model, kept with Zieop.</h2></div><p>Local Zieop models are previewable and downloadable directly from this project. The vault is intentionally local-first so visitors are not redirected to another model host.</p></div>
+  <div class="open-grid">
+    <article class="card open-card reveal"><div class="open-viewer"><model-viewer class="open-model" loading="lazy" interaction-prompt="none" src="zieop-model-01.glb" camera-controls auto-rotate shadow-intensity="1" exposure="1" poster="zieop-model-01.png" alt="Zieop Model 01"></model-viewer></div><div class="open-info"><h3>Zieop Model 01</h3><p>Original local 3D asset from the Zieop collection.</p><div class="open-line"><span class="license">LOCAL</span><a class="linkbtn" href="zieop-model-01.glb" download>Download GLB ↓</a></div></div></article>
+    <article class="card open-card reveal"><div class="open-viewer"><model-viewer class="open-model" loading="lazy" interaction-prompt="none" src="zieop-model-02.glb" camera-controls auto-rotate shadow-intensity="1" exposure="1" poster="zieop-model-02.png" alt="Zieop Model 02"></model-viewer></div><div class="open-info"><h3>Zieop Model 02</h3><p>Original local 3D asset from the Zieop collection.</p><div class="open-line"><span class="license">LOCAL</span><a class="linkbtn" href="zieop-model-02.glb" download>Download GLB ↓</a></div></div></article>
+  </div>
+  <div class="card" style="margin-top:18px;padding:20px;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap"><div><strong>Zieop Model Vault</strong><p style="margin:6px 0 0;color:var(--soft)">Bundled models are served from Zieop itself. The public source-code button points to the Zieop repository; third-party attribution is kept in the repository documentation.</p></div><a class="linkbtn" target="_blank" rel="noopener" href="https://github.com/creativeai7intellizone-hub/zieop">GitHub source code ↗</a></div>
+</section>
+
+<section class="section" id="art">
+  <div class="section-head">
+    <div><div class="eyebrow">05 / Art wall</div><h2>Frames, textures, motion.</h2></div>
+    <p>A visual wall for renders and motion studies keeps Zieop feeling like a creative practice, not only a technical demo.</p>
+  </div>
+  <div class="art-wall">
+    <button class="art-card art-tall reveal" onclick="openImage('zieop-preview-01.gif','Motion Frame 01')"><img src="zieop-preview-01.gif" alt="Motion frame 01" loading="lazy"><span>01 / Motion</span></button>
+    <button class="art-card reveal" onclick="openImage('zieop-model-01.png','Original Render I')"><img src="zieop-model-01.png" alt="Original render one" loading="lazy"><span>02 / Render</span></button>
+    <button class="art-card art-wide reveal" onclick="openImage('zieop-preview-08.gif','Motion Frame 08')"><img src="zieop-preview-08.gif" alt="Motion frame 08" loading="lazy"><span>03 / Loop</span></button>
+    <button class="art-card reveal" onclick="openImage('zieop-model-02.png','Original Render II')"><img src="zieop-model-02.png" alt="Original render two" loading="lazy"><span>04 / Render</span></button>
+    <button class="art-card art-tall reveal" onclick="openImage('zieop-preview-13.gif','Motion Frame 13')"><img src="zieop-preview-13.gif" alt="Motion frame 13" loading="lazy"><span>05 / Motion</span></button>
+  </div>
+</section>
+
+<section class="section" id="motion">
+  <div class="section-head">
+    <div><div class="eyebrow">06 / Motion archive</div><h2>Fifteen moving studies.</h2></div>
+    <p>The original GIF archive is retained as a visual layer inside the new presentation system. Search the archive instantly and open any frame larger.</p>
+  </div>
+  <div class="toolbar">
+    <input class="search" id="search" type="search" placeholder="Search motion studies…">
+    <span class="status-badge" style="align-self:center">Press / to search</span><select class="filter" id="filter"><option value="all">All studies</option><option value="01-05">01–05</option><option value="06-10">06–10</option><option value="11-15">11–15</option></select>
+  </div>
+  <div class="preview-grid" id="previewGrid"></div>
+</section>
+
+<section class="section" id="lab">
+  <div class="section-head">
+    <div><div class="eyebrow">07 / Experiments</div><h2>The Zieop lab.</h2></div>
+    <p>Small ideas can live here without pretending to be finished products: WebGL experiments, interaction tests, material explorations, and future AI-assisted visuals.</p>
+  </div>
+  <div class="lab-grid">
+    <article class="lab-card reveal"><span class="lab-no">01</span><h3>WebGL / Orbit</h3><p>Camera motion, floating forms, and spatial navigation.</p><span class="tag">EXPERIMENT</span></article>
+    <article class="lab-card reveal"><span class="lab-no">02</span><h3>Material / Glass</h3><p>Transmission, reflections, and soft studio lighting language.</p><span class="tag">MATERIAL</span></article>
+    <article class="lab-card reveal"><span class="lab-no">03</span><h3>Motion / Loop</h3><p>Short visual loops that can become hero scenes or social cuts.</p><span class="tag">MOTION</span></article>
+    <article class="lab-card reveal"><span class="lab-no">04</span><h3>AI / Visuals</h3><p>New image and interaction directions kept visually consistent with Zieop.</p><span class="tag">R&amp;D</span></article>
+  </div>
+</section>
+
+<section class="section" id="system">
+  <div class="section-head"><div><div class="eyebrow">08 / System</div><h2>Designed like a product.</h2></div><p>The final direction focuses on visual hierarchy, interactive storytelling, asset flexibility, and a consistent creative-tech identity.</p></div>
+  <div class="features">
+    <div class="feature reveal"><b>3D-first presentation</b><span>Objects are treated like exhibits, with space, atmosphere, metadata, and interaction.</span></div>
+    <div class="feature reveal"><b>Visual storytelling</b><span>Featured work, 3D world, art wall, experiments, and process create a stronger narrative.</span></div>
+    <div class="feature reveal"><b>Open ecosystem</b><span>Curated model sources stay visible with license and source context.</span></div>
+    <div class="feature reveal"><b>Responsive UI</b><span>Desktop, tablet, and mobile layouts with reduced-motion support.</span></div>
+  </div>
+</section>
+
+<section class="section contact" id="contact">
+  <div class="contact-card card reveal">
+    <div><div class="eyebrow">09 / Contact</div><h2>Let's build something with presence.</h2><p>For collaborations, 3D work, websites, automation, or experimental digital projects, keep the first conversation simple.</p></div>
+    <div class="actions"><button class="btn primary" type="button" onclick="openConversation()">Start a conversation ↗</button><a class="btn" href="#top">Back to top ↑</a></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div><div class="footer-brand">ZIE<span>OP</span></div><p>Rebuilt from the supplied project as a single premium web experience. No legacy versioned naming is used in this refresh; the collection, motion archive, open models, art wall, world, lab, system, and contact sections are now part of one final experience.</p></div>
+    <div class="footer-links"><a href="#collection">Collection</a><a href="#open">Model Vault</a><a href="#motion">Motion</a><a href="#contact">Contact</a><a target="_blank" rel="noopener" href="https://github.com/creativeai7intellizone-hub/zieop">Source Code</a></div>
+  </div>
+</footer>
+
+<div class="modal-back" id="modal">
+  <div class="modal">
+    <div class="modal-head"><div class="modal-title" id="modalTitle">Zieop</div><button class="modal-close" onclick="closeModal()">×</button></div>
+    <div class="modal-stage" id="modalStage"></div>
+    <div class="modal-body"><p id="modalText">Interactive preview.</p></div>
+  </div>
+</div>
+<div class="modal-back" id="conversationModal">
+  <div class="modal conversation-modal">
+    <div class="modal-head"><div class="modal-title">Start a conversation</div><button class="modal-close" type="button" onclick="closeConversation()">×</button></div>
+    <div class="modal-body">
+      <label style="display:grid;gap:8px">Message<textarea id="conversationMessage" rows="7" placeholder="Tell Zieop what you want to build…" style="width:100%;resize:vertical;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:#090c12;color:#f4f7fb;padding:14px;font:inherit"></textarea></label>
+      <div class="actions" style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap"><button class="btn primary" type="button" onclick="copyConversation()">Copy message</button><button class="btn" type="button" onclick="openEmailFallback()">Open email app</button></div>
+      <p id="conversationStatus" style="margin:12px 0 0;color:var(--soft);font-size:13px"></p>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast">Done</div>
+
+<script>
+const previewGrid=document.getElementById('previewGrid');
+const previewData=Array.from({length:15},(_,i)=>({n:i+1,src:`zieop-preview-${String(i+1).padStart(2,'0')}.gif`,title:`Motion Study ${String(i+1).padStart(2,'0')}`}));
+
+function renderPreviews(){
+  const q=(document.getElementById('search').value||'').toLowerCase().trim();
+  const f=document.getElementById('filter').value;
+  previewGrid.innerHTML='';
+  previewData.filter(x=>{
+    const range=f==='all'||(f==='01-05'&&x.n<=5)||(f==='06-10'&&x.n>=6&&x.n<=10)||(f==='11-15'&&x.n>=11);
+    const hit=!q||x.title.toLowerCase().includes(q)||String(x.n).includes(q);
+    return range&&hit;
+  }).forEach(x=>{
+    const el=document.createElement('button');
+    el.className='preview';el.type='button';
+    el.setAttribute('aria-label',x.title);
+    el.innerHTML=`<img src="${x.src}" loading="lazy" alt="${x.title}"><span>${x.title}</span>`;
+    el.onclick=()=>openImage(x.src,x.title);
+    previewGrid.appendChild(el);
+  });
+}
+document.getElementById('search').addEventListener('input',renderPreviews);
+document.getElementById('filter').addEventListener('change',renderPreviews);
+renderPreviews();
+
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>30),{passive:true});
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+function focusViewer(id){ const el=document.getElementById(id); if(el?.requestFullscreen) el.requestFullscreen().catch(()=>{}); else if(el?.enterFullscreen) el.enterFullscreen(); }
+function openImage(src,title){
+  document.getElementById('modalTitle').textContent=title;
+  document.getElementById('modalText').textContent='Visual preview — click outside or press Escape to close.';
+  document.getElementById('modalStage').innerHTML=`<img src="${src}" alt="${title}" style="width:100%;height:100%;object-fit:contain;background:#06090e">`;
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal(){document.getElementById('modal').classList.remove('open');document.getElementById('modalStage').innerHTML=''}
+function openConversation(){const modal=document.getElementById('conversationModal'); if(!modal)return; modal.classList.add('open'); const status=document.getElementById('conversationStatus'); if(status) status.textContent='Write your message, then copy it. A real contact address can be configured later without changing the UI.'; setTimeout(()=>document.getElementById('conversationMessage')?.focus(),80)}
+function closeConversation(){document.getElementById('conversationModal')?.classList.remove('open')}
+async function copyConversation(){const el=document.getElementById('conversationMessage');const status=document.getElementById('conversationStatus');const text=(el?.value||'').trim();if(!text){if(status)status.textContent='Write a message first.';return}try{await navigator.clipboard.writeText(text);if(status)status.textContent='Message copied. You can paste it into your preferred email or chat app.'}catch(e){el.select();document.execCommand('copy');if(status)status.textContent='Message copied.'}}
+function openEmailFallback(){const text=(document.getElementById('conversationMessage')?.value||'').trim();const subject='Zieop project enquiry';const href='mailto:?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(text);window.location.href=href}
+document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});document.getElementById('conversationModal').addEventListener('click',e=>{if(e.target.id==='conversationModal')closeConversation()});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){closeModal();closeConversation();}
+  if(e.key==='/' && !/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)){
+    e.preventDefault();
+    const search=document.getElementById('search');
+    search?.focus();
+  }
+});
+
+document.querySelectorAll('model-viewer.open-model').forEach(viewer=>{
+  viewer.addEventListener('error',()=>{
+    const wrap=viewer.parentElement;
+    if(!wrap.querySelector('.open-fallback')){
+      const fallback=document.createElement('div');
+      fallback.className='open-fallback';
+      fallback.innerHTML='<strong>3D preview unavailable</strong><span>This model is packaged locally inside Zieop and can be downloaded directly from this site.</span>';
+      wrap.appendChild(fallback);
+    }
+    wrap.querySelector('.open-fallback').style.display='flex';
+  });
+});
+
+window.addEventListener('load',()=>setTimeout(()=>document.querySelectorAll('.reveal').forEach((el,i)=>{if(i<3)el.classList.add('on')}),100));
+</script>
+</body>
+</html>
