@@ -4,7 +4,7 @@
 
 ### A cinematic, static-first creative-tech portfolio for **3D · Motion · Web · Experiments**
 
-![Zieop World-Class Pro](zieop-readme-banner.jpg)
+![Zieop World-Class Pro](zieop-readme-banner.jpg?v=1786810480)
 
 </div>
 
@@ -23,7 +23,7 @@ The site delivers a single unified `index.html` (with a byte-identical `zieop.ht
 - **9** numbered sections (01 → 09) covering Featured · Local Collection · 3D World · Model Vault · Art Wall · Motion · Lab · System · Contact
 - **8** world media files — MP4 reels and JPG stills
 
-![Zieop originals — local 3D collection](zieop-originals-preview.png)
+![Zieop originals — local 3D collection](zieop-originals-preview.png?v=1786810480)
 
 The screenshot above shows the **02 / LOCAL COLLECTION** section with Original Form I and Original Form II, each tagged `PBR · glTF 2.0 · Local · Web-ready` with a `Download GLB` action.
 
