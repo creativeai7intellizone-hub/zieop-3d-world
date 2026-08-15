@@ -4,8 +4,6 @@
 
 ### A cinematic, static-first creative-tech portfolio for **3D · Motion · Web · Experiments**
 
-![Zieop World-Class Pro](zieop-readme-banner.jpg?v=1786810480)
-
 </div>
 
 ---
