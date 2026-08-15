@@ -56,7 +56,6 @@ The screenshot above shows the **02 / LOCAL COLLECTION** section with Original F
 | MP4 world reels | 4 | `media/world/*.mp4` — environment · creature · vehicle · hero |
 | World JPG stills | 4 | `media/world/*.jpg` — creature · dragon · architecture · gallery |
 | Live sections | 9 | Numbered `01 → 09` navigation |
-| README banner | 1 | `zieop-readme-banner.jpg` |
 | Gallery contact sheet | 1 | `zieop-readme-gallery.jpg` |
 | Site preview | 1 | `zieop-originals-preview.png` |
 
@@ -201,7 +200,6 @@ zieop/
 ├── zieop-model-02.glb          # Original 3D asset 02 (30 MB)
 ├── zieop-model-02.png          # Poster render for Form II
 ├── zieop-preview-01.gif … 15   # 15-piece motion archive
-├── zieop-readme-banner.jpg     # README hero banner
 ├── zieop-readme-gallery.jpg    # README contact sheet
 ├── zieop-originals-preview.png # Site preview (Local Collection)
 ├── zieop-readme.md             # Full project documentation
